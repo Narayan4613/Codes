@@ -1,0 +1,44 @@
+/* bubble sort, linear search */
+#include<stdio.h>
+#include<conio.h>
+#define MAX 20
+void main()
+{ 	int a[MAX],n,i,cnt,temp,pos,flag=0,item;
+	clrscr();
+  printf("\n Enter total elements in array:");
+  scanf("%d",&n);
+
+  printf("\n Enter elements: ");
+  for(i=0;i<n;i++)
+  scanf("%d",&a[i]);
+
+  printf("\n Array: ");
+  for(i=0;i<n;i++)
+  printf("%3d",a[i]);
+
+  for(cnt=1;cnt<=n;cnt++)
+  { 	for(i=0;i<n-1;i++)
+	{    if(a[i]>a[i+1])
+	     { 	temp=a[i+1];
+		a[i+1]=a[i];
+		a[i]=temp;
+	    }
+  } }
+  printf("\n\n Sorted array: ");
+	for(i=0;i<n;i++)
+	printf("%3d",a[i]);
+printf("\n Enter item to search:");
+scanf("%d",&item);
+for(i=0;i<=n-1;i++)
+  { if(a[i]==item)
+    { pos=i; // store index no.
+      flag=1;
+      break;
+    }
+  }
+  if(flag==1)
+  printf("\n Item found at position %d",pos+1);
+  else
+  printf("\n Item not found");
+
+getch();  }

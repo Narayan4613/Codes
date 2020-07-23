@@ -1,0 +1,110 @@
+/* +ve,_ve- two linear-singly-linked-list */
+
+#include<stdio.h>
+#include<conio.h>
+
+typedef struct node // create struct NODE of type node
+{ int data;
+  struct node *next;
+}NODE;
+
+#define ALLOC (NODE *)malloc(sizeof(NODE))
+int i,n;
+void main()
+{ NODE *list=NULL;// initialise list pointer to NULL
+  NODE *list2=NULL;
+  NODE *create(NODE *);
+  NODE *create2(NODE *);
+  void *display(NODE *);
+  void *display2(NODE *);
+
+  clrscr();
+  printf("\n Enter number of elements in list:");
+  scanf("%d",&n);
+
+  for(i=1;i<=n;i++)
+  { printf("\n Enter data:");
+    scanf("%d",&
+  list=create(list);
+  list2=create2(list2);
+
+  display(list);
+  display2(list2);
+  getch();
+}
+
+NODE *create(NODE *list)
+{ NODE *newnode, *temp;
+
+
+{ newnode=ALLOC; // allocate memory of size NODE
+  newnode->next=NULL;// newnode initial nextadd NULL
+
+printf("\n Enter the element:");
+scanf("%d",&newnode->data); // first node val
+
+if(newnode->data>=0)
+{
+ if(list==NULL) // at first time
+  list=temp=newnode; // store add of newnode in list and temp
+else
+{ temp->next=newnode; // attach newnode to temp(temp-pointer)
+  temp=newnode;// move temp to lastnode
+}
+}
+else  //if node data is negative
+{
+if(list2==NULL) // at first time
+  list2=temp=newnode; // store add of newnode in list and temp
+else
+{ temp->next=newnode; // attach newnode to temp(temp-pointer)
+  temp=newnode;// move temp to lastnode
+}}
+}
+
+return list2;
+}
+
+NODE *create2(NODE *list2)
+{ NODE *newnode, *temp;
+
+printf("\n Enter number of elements in list:");
+scanf("%d",&m);
+
+for(i=1;i<=m;i++)
+{ newnode=ALLOC; // allocate memory of size NODE
+  newnode->next=NULL;// newnode initial nextadd NULL
+
+printf("\n Enter the element:");
+scanf("%d",&newnode->data); // first node val
+
+
+if(list2==NULL) // at first time
+  list2=temp=newnode; // store add of newnode in list and temp
+else
+{ temp->next=newnode; // attach newnode to temp(temp-pointer)
+  temp=newnode;// move temp to lastnode
+} }
+return list2;
+}
+void *display(NODE *list)
+{ NODE *temp;
+  temp=list;// add of first node
+
+  printf("\n List->"); // start
+  while(temp!=NULL)
+  { printf(" %d->",temp->data);
+   temp=temp->next;
+  }
+return 0;
+}
+void *display2(NODE *list2)
+{ NODE *temp;
+  temp=list2;// add of first node
+  while(temp!=NULL)
+  { printf(" %d->",temp->data);
+   temp=temp->next;
+  }
+printf("NULL");  // end
+return 0;
+}

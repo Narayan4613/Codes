@@ -1,0 +1,126 @@
+/* Menu:linear-singly-linked-list */
+/* insert at end and delete position wise*/
+
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+#include<stdlib.h>
+typedef struct node
+{   int data;
+    struct node *next;
+}NODE;
+#define ALLOC (NODE *)malloc(sizeof(NODE))
+
+void main()
+{ NODE *list=NULL;
+  int num,option,pos;
+
+  NODE *create(NODE *);
+  NODE *delete_node(NODE *,int); //list,pos
+  void *display(NODE *);
+  NODE *insert_at_end(NODE *,int);// list,num
+
+  clrscr();
+  do
+  {
+  printf("\n\n1.Create List:");
+  printf("\n2.Display List:");
+  printf("\n3.Insert at end:");
+  printf("\n4.Detete pos wise:");
+  printf("\n5.Exit:");
+  printf("\n\n---------------\n");
+  printf("\n\n Enter option:");
+  scanf("%d",&option);
+  switch(option)
+  { case 1:  list=create(list);
+	     break;
+    case 2:  display(list);
+	     break;
+    case 3:  printf("\n\n Enter number to insert:");
+	     scanf("%d",&num);
+	     list=insert_at_end(list,num);
+	     printf("\n Inserted......");
+	     display(list);
+	     break;
+    case 4:  printf("\n Enter position to delete item:");
+	     scanf("%d",&pos);
+	     list=delete_node(list,pos);
+	     printf("\n Deleted......");
+	     display(list);
+	     break;
+    case 5:  exit(0);
+    default:printf("\n Invalid option ");
+  }
+}while(option!=5);
+  getch();
+}
+
+NODE *create(NODE *list)
+{ NODE *newnode, *temp;
+  int i,n;
+printf("\n Enter number of elements in list:");
+scanf("%d",&n);
+
+for(i=1;i<=n;i++)
+{ newnode=ALLOC;
+  newnode->next=NULL;
+
+printf("\n Enter the element:");
+scanf("%d",&newnode->data);
+
+if(list==NULL)
+  list=temp=newnode;
+  else
+{ temp->next=newnode;
+  temp=newnode;
+} }
+return list;
+}
+void *display(NODE *list)
+{ NODE *temp=list;// move to first node
+
+  printf("\n\n List->");
+  while(temp!=NULL)
+  { 	printf(" %d->",temp->data);
+	temp=temp->next;
+  }
+printf("NULL");  // end
+return 0;
+}
+
+NODE *insert_at_end(NODE *list,int num)
+{   NODE *newnode,*temp;
+	newnode=ALLOC;
+	newnode->data=num;
+	newnode->next=NULL;
+// to move temp at end node
+temp=list;
+while(temp->next!=NULL)
+{temp=temp->next;
+}
+temp->next=newnode;
+return list;
+}
+
+NODE *delete_node(NODE *list,int pos)
+{  NODE *temp,*temp1;
+	int i;
+if(pos==1) //delete at beginning
+{	temp=list;
+	list=list->next;
+	free(temp);
+return list;
+}
+
+temp=list;// move temp to first node
+
+for(i=1;i<pos-1;i++) // move temp at node pos-1
+{ if(temp->next!=NULL)
+    temp=temp->next;
+}
+temp1=temp->next;// temp1 is a node to be deleted
+temp->next=temp1->next;
+free(temp1);
+
+return list;
+}

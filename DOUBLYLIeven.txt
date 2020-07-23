@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<conio.h>
+typedef struct dnode
+{
+	struct dnode *prev;
+	int data;
+	struct dnode *next;
+}dnode;
+dnode * create(dnode*,int);
+void display(dnode *);
+void dispeven(dnode *);
+//dnode *insert(dnode *,int);
+//dnode *del(dnode *,int);
+void main()
+{
+	int n,pos,pos1;
+	dnode *head=NULL;
+	clrscr();
+	printf("ENter the no of elements \n");
+	scanf("%d",&n);
+	head=create(head,n);
+	display(head);
+	printf("\n even node is the list:\t");
+	dispeven(head);
+	getch();
+}
+dnode * create(dnode *head,int n)
+{
+	dnode *newnode,*temp;
+	int val,i;
+	for(i=0;i<n;i++)
+	{
+		printf("\n enter the element");
+	scanf("%d",&val);
+		if(head==NULL)
+		{
+			head=(dnode *)malloc(sizeof(dnode));
+			head->next=head->prev=NULL;
+				head->data=val;
+			temp=newnode=head;
+		}
+		else
+		{
+			newnode->next=(dnode *)malloc(sizeof(dnode));
+			newnode=newnode->next;
+			newnode->prev=temp;
+			newnode->data=val;
+			newnode->next=NULL;
+			temp=temp->next;
+		 }
+	}
+		 return(head);
+}
+
+void display(dnode *head)
+{
+       dnode *temp=head;
+       while(temp!=NULL)
+       {
+	printf("\t%d",temp->data);
+	temp=temp->next;
+	}
+}
+void dispeven(dnode *head)
+{
+	dnode *temp=head;
+	while(temp!=NULL)
+	{
+		if(temp->data%2==0)
+			printf("%d\t",temp->data);
+			temp=temp->next;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

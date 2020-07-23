@@ -1,0 +1,131 @@
+ /* Menu:insert-search item into linear-SLL */
+
+#include<stdio.h>
+#include<conio.h>
+
+typedef struct node
+{   int data;
+    struct node *next;
+}NODE;
+#define ALLOC (NODE *)malloc(sizeof(NODE))
+
+void main()
+{ NODE *list=NULL;
+  int num,option,pos;
+
+  NODE *create(NODE *);
+  NODE *insert_at_pos(NODE *,int,int);// list,num,pos
+  void *search(NODE *,int); //list,num
+  void *display(NODE *);
+
+  clrscr();
+  do
+  {
+  printf("\n\n1.Create List:");
+  printf("\n2.Display List:");
+  printf("\n3.Insert at any pos :");
+  printf("\n4.Search:");
+  printf("\n5.Exit:");
+  printf("\n\n---------------");
+  printf("\n\n Enter option:");
+  scanf("%d",&option);
+  switch(option)
+  { case 1:  list=create(list);
+	     break;
+    case 2:  display(list);
+	     break;
+
+    case 3:  printf("\n\n Enter number to insert:");
+	     scanf("%d",&num);
+	     printf("\n Enter pos to insert number:");
+	     scanf("%d",&pos);
+	     list=insert_at_pos(list,num,pos);
+	     printf("\n Inserted......");
+	     display(list);
+	     break;
+    case 4:  printf("\n\n Enter number to search:");
+	     scanf("%d",&num);
+	     search(list,num);
+	     break;
+    case 5:  exit(0);
+    default:printf("\n Invalid option ");
+  }
+}while(option!=5);
+  getch();
+}
+
+NODE *create(NODE *list)
+{ NODE *newnode, *temp;
+  int i,n;
+printf("\n Enter number of elements in list:");
+scanf("%d",&n);
+
+for(i=1;i<=n;i++)
+{ newnode=ALLOC;
+  newnode->next=NULL;
+
+printf("\n Enter the element:");
+scanf("%d",&newnode->data);
+
+if(list==NULL)
+  list=temp=newnode;
+  else
+{ temp->next=newnode;
+  temp=newnode;
+} }
+return list;
+}
+void *display(NODE *list)
+{ NODE *temp=list;// move to first node
+
+  printf("\n\n List->");
+  while(temp!=NULL)
+  { 	printf(" %d->",temp->data);
+	temp=temp->next;
+  }
+printf("NULL");  // end
+return 0;
+}
+NODE *insert_at_pos(NODE *list,int num,int pos)
+{  NODE *newnode,*temp;
+	int i;
+	newnode=ALLOC;
+	newnode->data=num;
+	newnode->next=NULL;
+
+if(pos==1)
+{ newnode->next=list;
+  list=newnode;
+return list;
+}
+temp=list;// move temp to first node
+
+for(i=1;i<pos-1;i++) // move temp at node pos-1
+{ if(temp->next!=NULL)
+    temp=temp->next;
+}
+newnode->next=temp->next;
+temp->next=newnode;
+
+
+return list;
+}
+
+void *search(NODE *list,int num)
+{  NODE *temp;
+   int i=0,found=0;
+temp=list; // move to first node
+
+for(i=1;temp!=NULL;i++)
+{ if(temp->data==num)
+	{  printf("\n\n Item found at position=%d",i);
+	    found=1;
+	    break;
+	}
+  else
+  temp=temp->next;
+}
+if(found==0)
+printf("\n\n Item not found");
+return 0;
+}

@@ -1,0 +1,63 @@
+
+/* Count total nodes-singly-linked-list */
+
+#include<stdio.h>
+#include<conio.h>
+
+typedef struct node // create struct NODE of type node
+{ int data;
+  struct node *next;
+}NODE;
+
+#define ALLOC (NODE *)malloc(sizeof(NODE))
+
+void main()
+{ NODE *list=NULL;// initialise list pointer to NULL
+
+  NODE *create(NODE *);
+  void *display(NODE *);
+
+  clrscr();
+
+  list=create(list);
+  display(list);
+  getch();
+}
+
+NODE *create(NODE *list)
+{ NODE *newnode, *temp;
+  int i,n,digit;
+printf("\n Enter total numbers in list: ");
+scanf("%d",&n);
+for(i=1;i<=n;i++)
+{ newnode=ALLOC; // allocate memory of size NODE
+  newnode->next=NULL;// newnode initial nextadd NULL
+  printf("\n Enter data:");
+  scanf("%d",&newnode->data);
+
+if(list==NULL) // at first time
+  list=temp=newnode; // store add of newnode in list and temp
+else
+{ temp->next=
+newnode; // attach newnode to temp(temp-pointer)
+  temp=newnode;//
+}
+}
+return list;
+}
+
+void *display(NODE *list)
+{ NODE *temp;
+  int count=0;
+  temp=list;// add of first node
+
+  printf("\n List->"); // start
+  while(temp!=NULL)
+  { printf(" %d->",temp->data);
+    temp=temp->next;
+  count++;
+  }
+printf("NULL");  // end
+printf("\n\n Total Nodes in the list=%d",count);
+return 0;
+}

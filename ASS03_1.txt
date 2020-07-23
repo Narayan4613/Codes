@@ -1,0 +1,48 @@
+/* function:linear search */
+#include<stdio.h>
+#include<conio.h>
+#define MAX 100
+
+void main()
+{ int a[MAX],i,n,item,pos;
+  int li_search(int [],int,int); // array,size n,item
+clrscr();
+
+printf("\n Enter total items in array: ");
+scanf("%d",&n);
+
+printf("\n Enter array items:");
+for(i=0;i<=n-1;i++)
+scanf("%d",&a[i]);
+
+printf("\n Array :\n\n");
+for(i=0;i<=n-1;i++)
+printf("%3d",a[i]);
+
+printf("\n Enter item to search: ");
+scanf("%d",&item);
+
+pos=li_search(a,n,item);
+
+if(pos==-1)
+printf("\n Item not found");
+else
+printf("\n ÞPosition of %d in array is %d",item,pos+1);
+
+getch();
+}
+
+int li_search(int a[],int n ,int item)
+{ int i,flag=0,pos;
+  for(i=0;i<=n-1;i++)
+  { if(a[i]==item)
+    { pos=i;
+      flag=1;
+      break;
+    }
+  }
+  if(flag==1)
+  return pos;
+  else
+  return (-1); // not found
+}

@@ -1,0 +1,40 @@
+/* convert infix expression into postfix*/
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<ctype.h>
+
+void main()
+{ int top=-1,i=0,j=0;
+  char infixstr[20],postfixstr[20],opstk[20],ch;
+
+  clrscr();
+  printf("\nEnter infix expression:");
+  scanf("%s",infixstr);
+
+  for(i=0;i<=strlen(infixstr)-1;i++)
+  { ch=infixstr[i];
+    if(ch=='+'|| ch=='-'|| ch=='*'||ch=='/'||ch=='^'||ch=='(')
+    { top++;          //push into stack
+      opstk[top] = ch;
+    }
+    else if(isalpha(ch)) // add to string
+    { postfixstr[j]=ch;
+      j++;
+    }
+    else if(ch==')')
+    {
+      postfixstr[j]=opstk[top]; //pop from stack , add to string
+      j++;
+      top--;
+      top--;  //pop again
+    }
+ }
+ while(top!=-1)
+ { postfixstr[j]=opstk[top];
+   top--;
+ }
+ for(j=0;j<=strlen(postfixstr)-1 ;j++)
+ printf("%c",postfixstr[j]);
+ getch();
+}

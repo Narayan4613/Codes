@@ -1,0 +1,68 @@
+/* addition of polynomials*/
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#define MAX 100
+
+void main()
+{ int a[5],b[5],c[5],i;
+  char sign;
+float x;
+clrscr();
+
+printf("\n Enter the coeff of poly1 into array a:");
+for(i=4;i>=0;i--)
+scanf("%d",&a[i]);
+
+printf("\n Enter the coeff of poly2 into array b:");
+for(i=4;i>=0;i--)
+scanf("%d",&b[i]);
+
+printf("\n Poly1 :");
+for(i=4;i>=0;i--)
+{  if(a[i]>=0) // positive coeff
+   sign='+';
+   else       // negative coeff
+   sign='-';
+
+if(i>1) // check power
+	printf("%c %dx^%d\t",sign,abs(a[i]),i);
+else if(i==1)
+	printf("%c %dx\t",sign,abs(a[i]));
+else
+	printf("%c %d\t",sign,abs(a[i]));
+}
+printf("\n Poly2 :");
+for(i=4;i>=0;i--)
+{  if(b[i]>=0) // positive coeff
+   sign='+';
+   else       // negative coeff
+   sign='-';
+
+if(i>1) // check power
+	printf("%c %dx^%d\t",sign,abs(b[i]),i);
+else if(i==1)
+	printf("%c %dx\t",sign,abs(b[i]));
+else
+	printf("%c %d\t",sign,abs(b[i]));
+}
+printf("\n----------------------------------------------\n");
+printf("\n Poly3 :");
+
+for(i=4;i>=0;i--)
+{ c[i]=a[i]+b[i];   // add coeff
+
+	if(c[i]>=0) // positive coeff
+	sign='+';
+	else       // negative coeff
+	sign='-';
+   if(i>1) // check power
+	printf("%c %dx^%d\t",sign,abs(c[i]),i);
+   else if(i==1)
+	printf("%c %dx\t",sign,abs(c[i]));
+   else
+	printf("%c %d\t",sign,abs(c[i]));
+}
+getch();
+}
+

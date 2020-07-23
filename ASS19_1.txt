@@ -1,0 +1,57 @@
+/* recursive func:merge sort*/
+#include<stdio.h>
+#include<conio.h>
+
+void merge(int a[],int low,int mid, int upp);
+void main()
+{ int a[]={12,5,8,40,2},i,lb,ub;
+
+  void mergesort(int[],int,int); // array,lb,ub
+  clrscr();
+
+  printf("\n Array: ");
+  for(i=0;i<5;i++)
+  printf("%3d",a[i]);
+
+  lb=0; ub=4;
+  mergesort(a,lb,ub);// fn call,goto fn defi
+
+  printf("\n\n Sorted array: ");
+	for(i=0;i<5;i++)
+	printf("%3d",a[i]);
+ getch();
+ }
+
+void mergesort(int a[],int low,int upp) // fn defi
+{
+  int mid;
+  if(low<upp)
+  { mid=(low+upp)/2; // divide list into two
+    printf("\n %d %d",low,mid);
+    mergesort(a,low,mid);
+    printf("\n %d %d",mid+1,upp);
+    mergesort(a,mid+1,upp);
+    printf("\n %d %d %d",low,mid,upp);
+    merge(a,low,mid,upp);
+  }
+}
+void merge(int a[], int low, int mid ,int upp)
+{ int i,j,k,temp[20];
+
+
+ i=low; j=mid+1; k=0;
+ while((i<=mid) && (j<=upp))
+ { if(a[i]<a[j])
+    temp[k++]=a[i++];
+    else
+    temp[k++]=a[j++];
+ }
+ while(i<=mid)
+ temp[k++]=a[i++];
+ while(j<=upp)
+ temp[k++]=a[j++];
+
+ /* copy mearged items from temp[] into a[]*/
+ for(j=low,k=0;j<=upp;j++,k++)
+ a[j]=temp[k];
+ }

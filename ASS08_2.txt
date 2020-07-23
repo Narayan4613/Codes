@@ -1,0 +1,78 @@
+/* create and display Reverse-linear-SLL */
+
+#include<stdio.h>
+#include<conio.h>
+
+typedef struct node // create struct NODE of type node
+{ int data;
+  struct node *next;
+}NODE;
+
+#define ALLOC (NODE *)malloc(sizeof(NODE))
+int i,j,n;
+void main()
+{ NODE *list=NULL;// initialise list pointer to NULL
+
+  NODE *create(NODE *);
+  void *display(NODE *);
+  void *revlist(NODE *);
+
+  clrscr();
+
+  list=create(list);
+  display(list);
+
+  revlist(list);
+  getch();
+}
+
+NODE *create(NODE *list)
+{ NODE *newnode, *temp;
+  int i,n;
+printf("\n Enter number of elements in list:");
+scanf("%d",&n);
+
+for(i=1;i<=n;i++)
+{ newnode=ALLOC; // allocate memory of size NODE
+  newnode->next=NULL;// newnode initial nextadd NULL
+
+printf("\n Enter the element:");
+scanf("%d",&newnode->data); // first node val
+
+
+if(list==NULL) // at first time
+  list=temp=newnode; // store add of newnode in list and temp
+else
+{ temp->next=newnode; // attach newnode to temp(temp-pointer)
+  temp=newnode;// move temp to lastnode
+} }
+return list;
+}
+
+void *display(NODE *list)
+{ NODE *temp;
+  temp=list;// add of first node
+
+  printf("\n List->"); // start
+  while(temp!=NULL)
+  { printf(" %d->",temp->data);
+    temp=temp->next;
+  }
+printf("NULL");  // end
+return 0;
+}
+void *revlist(NODE *list)
+{  NODE *newnode *temp;
+	int num;
+	temp=list;
+	while(temp!=NULL)
+	{ num=temp->data;
+	  newnode=ALLOC;
+	  newnode->data=num;
+	  newnode->next=list;
+	  list=newnode;
+return list;
+}
+
+return 0;
+}

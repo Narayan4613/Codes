@@ -1,0 +1,24 @@
+/* Bubble sort-ascending*/
+
+#include<stdio.h>
+#include<conio.h>
+
+void main()
+{ 	int a[]={-11,2,1,5,4 },i,cnt,temp;
+	clrscr();
+  printf("\n Array: ");
+	 for(i=0;i<5;i++)
+	printf("%3d",a[i]);
+  for(cnt=1;cnt<=5;cnt++)
+  { 	for(i=0;i<4;i++)
+	{    if(a[i]>a[i+1])
+	     { 	temp=a[i+1];
+		a[i+1]=a[i];
+		a[i]=temp;
+	    }
+  } }
+  printf("\n\n Sorted array: ");
+	for(i=0;i<5;i++)
+	printf("%3d",a[i]);
+
+getch();  }
